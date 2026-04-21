@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #050816;
+    --surface: #0F172A;
+    --primary: #8B5CF6;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --radius: 1rem;
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--text-primary);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-2xl transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply border-white/[0.15] bg-white/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.5)];
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-violet-600 px-6 py-3 font-semibold text-white transition-all hover:bg-violet-500 hover:shadow-[0_0_20px_rgba(139,92,246,0.4)];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl bg-white/[0.05] border border-white/10 px-6 py-3 font-semibold text-white transition-all hover:bg-white/[0.1];
+  }
+
+  .input-field {
+    @apply w-full rounded-xl bg-slate-900/50 border border-white/10 px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500 transition-colors;
+  }
+  
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #a78bfa, #8B5CF6, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
