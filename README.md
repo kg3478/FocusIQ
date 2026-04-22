@@ -6,7 +6,7 @@
 
 **Know exactly what to study today. Never waste a session again.**
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-7C3AED?style=for-the-badge)](https://focusiq.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-7C3AED?style=for-the-badge)](https://focus-iq-two.vercel.app)
 [![Backend API](https://img.shields.io/badge/API%20Docs-FastAPI-009688?style=for-the-badge)](https://focusiq-api.onrender.com/docs)
 [![GitHub Stars](https://img.shields.io/github/stars/kg3478/FocusIQ?style=for-the-badge&color=F59E0B)](https://github.com/kg3478/FocusIQ)
 
@@ -162,11 +162,11 @@ After each session, the review interval for that subject is updated based on you
 
 ## ☁️ Deployment
 
-| Service | Platform | Cost |
+| Service | Platform | URL / Note |
 |---|---|---|
-| Frontend | Vercel | Free |
-| Backend API | Render | Free |
-| Database | SQLite → Neon.tech Postgres | Free |
+| Frontend | Vercel | https://focus-iq-two.vercel.app |
+| Backend API | Render (free) | https://focusiq-api.onrender.com |
+| Database | Supabase PostgreSQL (free) | Persistent — does not reset on restart |
 
 ---
 
