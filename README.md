@@ -182,7 +182,7 @@ FocusIQ demonstrates:
 
 > If you are looking for a PM who can speak the language of engineers, ship real code, and build products that feel premium — let's talk.
 
-📬 [LinkedIn](https://linkedin.com/in/kartikgarg) · [Portfolio](https://kartikgarg.com) · [GitHub](https://github.com/kg3478)
+📬 [LinkedIn](www.linkedin.com/in/kartik-garg-a94760191) · [GitHub](https://github.com/kg3478)
 
 ---
 
