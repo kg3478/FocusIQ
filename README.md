@@ -45,9 +45,9 @@ It is an AI study planner that builds a personalised daily schedule by analysing
 
 > *Landing Page → Login → Dashboard → Analytics*
 
-```
-[screenshots go here once deployed — add via: frontend/public/screenshots/]
-```
+<div align="center">
+  <img src="docs/images/dashboard_preview.jpg" alt="FocusIQ Dashboard UI" width="100%" />
+</div>
 
 ---
 
@@ -94,37 +94,58 @@ GOOGLE_CLIENT_SECRET=       # optional
 
 ---
 
-## 🏗️ Architecture
+## 📚 Comprehensive Documentation Suite
+
+FocusIQ features an extensive documentation suite designed for engineering and product leadership review:
+
+| Document | Key Highlights | Link |
+|:---|:---|:---:|
+| **🏗️ System Architecture** | C4 context models, decoupled topology, ER diagrams, security, data flows | [View Document](docs/01_SYSTEM_ARCHITECTURE.md) |
+| **🗺️ User Flow & Journeys** | Core behavioral loops, FTUX auto-seeding, 30s session logging sequence | [View Document](docs/02_USER_FLOW_AND_JOURNEYS.md) |
+| **🧠 AI & Algorithmic Engine** | Priority formula, SuperMemo-2 math, VADER struggle lexicon, time budgeting | [View Document](docs/03_AI_AND_ALGORITHMIC_ENGINE.md) |
+| **📋 Product Requirements (PRD)** | Problem framing, 5 Whys, Arjun & Priya personas, JTBD, 8 KPIs, v1-v2 roadmap | [View Document](docs/04_PRODUCT_REQUIREMENTS_DOCUMENT.md) |
+| **🔌 REST API Specification** | Endpoints reference, JSON schemas, headers, auth flows, cURL test cases | [View Document](docs/05_API_SPECIFICATION.md) |
+| **📓 PM Decision Journal** | 7 strategic trade-offs, architecture & AI choices, metrics justification | [View Document](docs/06_PM_DECISION_JOURNAL.md) |
+| **🚀 Deployment & DevOps** | Production setup on Vercel, Render & Supabase, env matrix, runbooks | [View Document](docs/07_DEPLOYMENT_AND_DEVOPS_GUIDE.md) |
+
+---
+
+## 🏗️ Architecture & Topology
+
+<div align="center">
+  <img src="docs/images/architecture_diagram.jpg" alt="FocusIQ System Architecture" width="100%" />
+</div>
 
 ```
 FocusIQ/
-├── frontend/                  # Next.js 14 App
-│   ├── app/
-│   │   ├── page.js            # Landing page
-│   │   ├── login/page.js      # Auth page (NextAuth v4)
-│   │   ├── onboarding/page.js # Subject setup flow
-│   │   ├── dashboard/page.js  # Main AI planner
-│   │   └── analytics/page.js  # Recharts visualizations
-│   ├── components/
-│   │   ├── Navbar.js          # Glassmorphism nav
-│   │   └── StudyCard.js       # Per-subject session card
+├── frontend/                  # Next.js 14 App (App Router, Tailwind, Recharts)
+│   ├── app/                   # Landing, Login, Dashboard, Analytics, Onboarding
+│   ├── components/            # StudyCard, Navbar
 │   ├── lib/api.js             # FastAPI client wrapper
 │   └── middleware.js          # Route protection
 │
-└── backend/                   # FastAPI Python App
-    ├── main.py                # CORS, middleware, app entry
-    ├── routes.py              # All API endpoints
-    ├── scheduler.py           # AI priority + SM-2 algorithm
-    ├── sentiment.py           # VADER NLP analysis
-    ├── models.py              # SQLAlchemy ORM models
-    └── database.py            # SQLite / PostgreSQL config
+├── backend/                   # FastAPI Python App (Uvicorn ASGI)
+│   ├── main.py                # App entrypoint, CORS, error middleware
+│   ├── routes.py              # REST API endpoints & dependency injection
+│   ├── scheduler.py           # Priority engine + SuperMemo-2 (SM-2)
+│   ├── sentiment.py           # VADER NLP sentiment & struggle mining
+│   ├── models.py              # SQLAlchemy ORM relational models
+│   └── database.py            # SQLite & Supabase PostgreSQL pooler
+│
+└── docs/                      # Comprehensive technical & PM documentation
+    ├── images/                # Visual architecture, user flow, & AI diagrams
+    └── *.md                   # Full architecture, PRD, API, PM journals
 ```
 
 ---
 
 ## 🧠 How the AI Works
 
-The priority engine scores every subject on a scale using four weighted signals:
+<div align="center">
+  <img src="docs/images/ai_engine_workflow.jpg" alt="FocusIQ AI & Algorithmic Architecture" width="100%" />
+</div>
+
+The priority engine scores every subject dynamically using four weighted signals:
 
 ```
 Priority Score =
@@ -134,12 +155,15 @@ Priority Score =
 + (Difficulty level          × 0.1)   ← base weight
 ```
 
-Subjects are then ranked and allocated time blocks within your daily hours budget.
+Subjects are then ranked and allocated time blocks within your daily hours budget (20–90 min per subject).
 
 **Spaced Repetition (SM-2):**
 After each session, the review interval for that subject is updated based on your focus rating:
-- Rating ≥ 4 → interval increases (you're solid, come back later)
-- Rating ≤ 2 → interval resets (study this again tomorrow)
+- Rating ≥ 4 → interval increases (exponential memory consolidation)
+- Rating ≤ 2 → interval resets to 1 day (immediate re-study)
+
+**VADER NLP Struggle Extraction:**
+When you write study reflection notes, VADER NLP analyzes emotional sentiment and scans for struggle keywords (`confused`, `stuck`, `lost`, `overwhelmed`), automatically boosting the subject's priority for tomorrow's schedule.
 
 ---
 
